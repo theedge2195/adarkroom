@@ -5,8 +5,7 @@ pipeline {
       steps {
         sh '''#!/bin/bash
 cd ~
-sudo docker stop haydencardwell/adarkroom
-sudo docker rm haydencardwell/adarkroom
+sudo docker rm $(docker ps -aq)
 sudo docker build -t haydencardwell/adarkroom .
 sudo docker run -p 80:80 -d haydencardwell/adarkroom'''
       }
