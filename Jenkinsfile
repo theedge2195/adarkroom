@@ -1,15 +1,25 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('Staging') {
       steps {
         sh '''#!/bin/bash
-cd /
-sudo su
-yum install docker -y
-service docker start
-chkconfig docker on
-docker run -dit --name adarkroom -p 8080:80 -v "$PWD":/usr/local/apache2/htdocs/ httpd:2.4'''
+cd ~
+sudo docker stop haydencardwell/adarkroom
+sudo docker rm haydencardwell/adarkroom
+sudo docker build -t haydencardwell/adarkroom .
+sudo docker run -p 80:80 -d haydencardwell/adarkroom'''
+      }
+    }
+    stage('Confirmation!') {
+      steps {
+        input 'Should we deploy?'
+      }
+    }
+    stage('Production!') {
+      steps {
+        sh '''#!/bin/bash
+pwd'''
       }
     }
   }
