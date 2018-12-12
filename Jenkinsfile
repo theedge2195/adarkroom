@@ -5,9 +5,11 @@ pipeline {
       steps {
         sh '''#!/bin/bash
 cd ~
-sudo docker rm $(docker ps -aq)
-sudo docker build -t haydencardwell/adarkroom .
-sudo docker run -p 80:80 -d haydencardwell/adarkroom'''
+sudo su
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+docker build -t haydencardwell/adarkroom .
+docker run -p 80:80 -d haydencardwell/adarkroom'''
       }
     }
     stage('Confirmation!') {
