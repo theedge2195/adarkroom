@@ -8,8 +8,8 @@ cd ~
 sudo su
 sudo docker stop adarkroom
 sudo docker rm adarkroom
-docker build -t haydencardwell/adarkroom .
-docker run --restart always --name adarkroom -p 80:80 -d haydencardwell/adarkroom
+sudo docker build -t haydencardwell/adarkroom .
+sudo docker run --restart always --name adarkroom -p 80:80 -d haydencardwell/adarkroom
 '''
       }
     }
