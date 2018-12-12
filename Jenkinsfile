@@ -6,11 +6,11 @@ pipeline {
         sh '''#!/bin/bash
 cd ~
 sudo su
-sudo docker stop $(docker ps -a -q)
-sudo docker rm $(docker ps -a -q)
+sudo docker stop adarkroom
+sudo docker rm adarkroom
 docker build -t haydencardwell/adarkroom .
-docker run -p 80:80 -d haydencardwell/adarkroom
-docker stop $(docker ps -a -q)'''
+docker run --restart always --name adarkroom -p 80:80 -d haydencardwell/adarkroom
+'''
       }
     }
     stage('Confirmation!') {
