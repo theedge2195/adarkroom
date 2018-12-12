@@ -6,8 +6,8 @@ pipeline {
         sh '''#!/bin/bash
 cd ~
 sudo su
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
+sudo docker stop $(docker ps -a -q)
+sudo docker rm $(docker ps -a -q)
 docker build -t haydencardwell/adarkroom .
 docker run -p 80:80 -d haydencardwell/adarkroom
 docker stop $(docker ps -a -q)'''
